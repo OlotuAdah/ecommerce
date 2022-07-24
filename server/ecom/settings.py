@@ -16,7 +16,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -26,13 +25,12 @@ SECRET_KEY = 'django-insecure-mz0g+@g50p0cwvhzl9c_*n_t$$8ab!y01v%$7c=5io&7-y7z67
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"] #All hosts: (... to be changed before prod)
-
+ALLOWED_HOSTS = ["*"]  # All hosts: (... to be changed before prod)
 
 # Application definition
 
 INSTALLED_APPS = [
-     'corsheaders',  # Installed by me
+    'corsheaders',  # Installed by me
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,12 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Installed by me
-    'rest_framework', # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
-    'rest_framework.authtoken' # for custom sign up
+    'rest_framework',  # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
+    'rest_framework.authtoken',  # for custom sign up
+    'api',
+    'api.category'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # Added by me
+    'corsheaders.middleware.CorsMiddleware',  # Added by me
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,7 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecom.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -85,7 +84,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -105,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -117,30 +114,28 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
 MEDIA_URL = '../media/'
-MEDIA_ROOT= os.path.join(BASE_DIR, '../media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
 
-CORS_ORIGIN_ALLOW_ALL = True # Added by me
+CORS_ORIGIN_ALLOW_ALL = True  # Added by me
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-REST_FRAMEWORK = { # Added by me
+REST_FRAMEWORK = {  # Added by me
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication', # Allows for basic auth
-        'rest_framework.authentication.SessionAuthentication', # Allows for session auth
-        'rest_framework.authentication.TokenAuthentication' , # Allows for Token based auth
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',  # Allows for basic auth
+        'rest_framework.authentication.SessionAuthentication',  # Allows for session auth
+        'rest_framework.authentication.TokenAuthentication',  # Allows for Token based auth
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'

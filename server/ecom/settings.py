@@ -30,18 +30,21 @@ ALLOWED_HOSTS = ["*"]  # All hosts: (... to be changed before prod)
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',  # Installed by me
+    # Installed by me
+    'api',
+    'api.category',
+    'api.product',
+    'rest_framework',  # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
+    'rest_framework.authtoken',  # for custom sign up
+    'corsheaders',
+    # //////////////////////
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Installed by me
-    'rest_framework',  # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
-    'rest_framework.authtoken',  # for custom sign up
-    'api',
-    'api.category'
+
 ]
 
 MIDDLEWARE = [
@@ -117,10 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '../static/'
 
 MEDIA_URL = '../media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '..media')
 
 CORS_ORIGIN_ALLOW_ALL = True  # Added by me
 

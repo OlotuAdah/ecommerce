@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]  # All hosts: (... to be changed before prod)
 INSTALLED_APPS = [
     # Installed by me
     'api',
+    'api.user',
     'api.category',
     'api.product',
     'rest_framework',  # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
@@ -125,6 +126,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODEL = "user.CustomUser"
 CORS_ORIGIN_ALLOW_ALL = True  # Added by me
 
 # Default primary key field type

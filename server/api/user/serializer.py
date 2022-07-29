@@ -9,7 +9,7 @@ from .models import CustomUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, validated_data):
         password = validated_data.pop('password', None)
-        instance = self.Meta.model(**validated_data)  # ** used to unpack to key, value pair (dict)
+        instance = self.Meta.model(**validated_data)  # ** used to unpack to key, value pair (dict) to model
 
         if password is not None:
             instance.set_password(password)
@@ -19,10 +19,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     def update(self, instance, validated_data):
         for attribute, value in validated_data.items():
             if attribute == 'password':
-                # use this because you can use setattr to update password
+                # use this because you can not use setattr to update password
                 instance.set_password(value)
             else:
-                # every other items aside, password set same value on instance
+                # every other items aside password, set same value on instance
                 setattr(instance, attribute, value)
         instance.save()
         return instance

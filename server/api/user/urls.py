@@ -1,13 +1,13 @@
 from rest_framework import routers
 from django.urls import path, include
 
-from . import views
+from .views import sign_in, sign_out, UserViewSet
 
 router = routers.DefaultRouter()
-router.register(r'', views.UserViewSet)
+router.register(r'', UserViewSet)
 
 urlpatterns = [
-    path('login/', views.sign_in, name='signin'),
-    path('logout/<int:id>', views.sign_out, name='signout'),
+    path('login/', sign_in, name='signin'),
+    path('<int:id>/logout/', sign_out, name='sign_out'),
     path('', include(router.urls))
 ]

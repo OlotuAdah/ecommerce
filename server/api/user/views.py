@@ -22,7 +22,7 @@ def generate_session_token(length=10):
 # NB: Decorator is used here to make modification to library code from client code
 @csrf_exempt  # allow sign in from other origins aside this one
 def sign_in(request):
-    if request.method is not 'POST':
+    if request.method != 'POST':
         return JsonResponse({'error': 'Send a POST request with valid parameters'})
 
     username = request.POST['email']
@@ -43,7 +43,7 @@ def sign_in(request):
         user_dict = UserModel.objects.filter(email=username).values().first()
         user_dict.pop('password')
 
-        if user.session_token is not "0":
+        if user.session_token != "0":
             user.session_token = "0"
             user.save()
             return JsonResponse({'msg': 'Already logged in!'})
@@ -83,4 +83,4 @@ class UserViewSet(viewsets.ModelViewSet):
         try:
             return [permission() for permission in self.permission_classes_by_action[self.action]]
         except KeyError:
-            return [permission() for permission in self.permission_class]
+            return [permission() for permission in self.permission_classes]

@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'api.user',
     'api.category',
     'api.product',
+    'api.order',
+    'api.payment',
     'rest_framework',  # for serializing and deserializing (ie Custom Type-> JSON & vice versa)
     'rest_framework.authtoken',  # for custom sign up
     'corsheaders',

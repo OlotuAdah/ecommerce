@@ -1,0 +1,94 @@
+import React from "react";
+import ImageHelper from "./helper/ImageHelper";
+
+function Card(props) {
+  const defaultProduct = {
+    name: "T-shirt Name",
+    price: 5,
+    desc: "Short description of the T-shirt",
+    image: "/img/bitcoin.avif",
+    reviews: 25,
+    rate: 4.4,
+  };
+  const product = props.product ? props.product : defaultProduct;
+
+  return (
+    <div className="product-card">
+      {/* <!-- card image --> */}
+      <div className="h-[320px]">
+        <ImageHelper
+          image={product.image}
+          width="w-full"
+          height="h-full"
+          roundedValue="rounded-t-lg"
+        />
+      </div>
+      {/* <!-- card content--> */}
+      <div className="px-6 mt-2 pb-1 relative">
+        {/* Rating */}
+        <div className="flex text-sm">
+          {[...Array(Math.floor(product.rate))].map((item, i) => (
+            <span className="material-icons text-amber-400" key={i.toString()}>
+              grade
+            </span>
+          ))}
+          {Number(product.rate) % 1 > 0.3 ? (
+            <span className="material-icons text-amber-400">star_half</span>
+          ) : (
+            <span></span>
+          )}
+          {/* Reviews */}
+          <span className="ml-2 text-xs text-gray-600 flex-grow text-right place-self-center">
+            {product.reviews} reviews
+          </span>
+        </div>
+        {/* T-shirt name */}
+        <p className="text-lg font-bold font-comf text-gray-600">
+          {product.name}
+        </p>
+        {/* T-shirt description */}
+
+        <p className="text-xs text-gray-600">{product.description}</p>
+        <div className={`flex justify-between`}>
+          {/* Contains Tags and Cart action buttons */}
+          {/* <!-- 1: Tags --> */}
+          <div className={`space-x-1`}>
+            <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-amber-700 rounded-full">
+              Price
+            </span>
+            <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-amber-700 rounded-full">
+              ${product.price}
+            </span>
+            {/* <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-amber-700 rounded-full">
+              gym
+            </span> */}
+          </div>
+          {/* <!-- 2: Cart Buttons -->  */}
+          <div className={`align-middle space-x-1`}>
+            <button className="small-btn-cart">
+              <span className="">add </span>
+              <span className=" material-icons cart-icon ">shopping_cart</span>
+            </button>
+            <button className="small-btn-cart">
+              <span className="material-icons cart-icon">remove</span>
+              <span className=" material-icons cart-icon ">shopping_cart</span>
+            </button>
+          </div>
+        </div>
+        {/* Trending T-shirts: Should only become visible if rate is >=4 and reviews is >=20 */}
+
+        {product.rate >= 4 && product.reviews >= 20 ? (
+          <div className="absolute right-0 bottom-0 ">
+            <span className="material-icons text-md text-red-700">
+              local_fire_department
+            </span>
+          </div>
+        ) : (
+          <span></span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default Card;

@@ -1,0 +1,41 @@
+body {
+  margin: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply bg-amber-500 text-gray-100 px-3 py-2 rounded-full;
+  }
+  .btn-cart {
+    @apply text-amber-500 bg-gray-100 border border-amber-300 px-3 py-2 rounded-lg hover:bg-amber-500 hover:text-gray-50 transition-all duration-700;
+  }
+  .image-helper-hover-animation {
+    @apply transition-all duration-500 hover:scale-y-105;
+  }
+  .small-btn-cart {
+    @apply text-amber-500 bg-gray-100 border  hover:text-gray-100 hover:bg-amber-500 text-xs px-2 py-0.5 rounded-lg transition-all duration-500;
+  }
+  .cart-icon {
+    @apply text-xs text-inherit  align-middle;
+  }
+  .product-card {
+    @apply bg-white max-w-xl rounded-lg shadow-lg hover:shadow-xl hover:shadow-amber-300 overflow-hidden shadow-amber-200;
+  }
+  .login-signup-btn {
+    @apply text-amber-500 border  border-amber-500  hover:bg-amber-500 hover:text-white py-2 px-4 rounded-full transition-all duration-500;
+  }
+}

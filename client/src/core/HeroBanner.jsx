@@ -1,4 +1,5 @@
 import React from "react";
+import ArrowDown from "../animated/ArrowDown";
 
 function HeroBanner() {
   return (
@@ -28,6 +29,16 @@ function HeroBanner() {
           >
             Buy Now
           </button>
+        </div>
+        {/* <ArrowDown /> */}
+      </div>
+      <div
+        className={`absolute w-12 h-[46px] bottom-[100px] right-20 bg-sky-50/30 rounded-lg`}
+      >
+        <div
+          className={`flex w-full h-full  justify-center items-center animate-bounce mt-3`}
+        >
+          <ArrowDown />
         </div>
       </div>
     </div>

@@ -4,8 +4,13 @@ import { getProducts } from "./helper/coreAPICall";
 import Card from "./Card";
 import HeroBanner from "./HeroBanner";
 import { Fragment } from "react";
-import Hb from "./Hb";
+
 import WhyUs from "./WhyUs";
+import ProductsHeader from "./helper/ProductsHeader";
+import Inspiration from "./Inspiration";
+import BeutifyYourSpace from "./BeutifyYourSpace";
+import HowItWorks from "./HowItWorks";
+import CircularBadge from "./helper/CircularBadge";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -24,10 +29,10 @@ function Home() {
 
   return (
     <Fragment>
-      {/* <Hb /> */}
       <HeroBanner />
       <WhyUs />
       <div className={`w-9/12 px-3 py-10 mx-auto`}>
+        <ProductsHeader />
         <div className={`grid grid-cols-3 gap-6 mx-auto`}>
           {products && error !== true
             ? products.map((product, i) => (
@@ -35,6 +40,10 @@ function Home() {
               ))
             : ""}
         </div>
+        <Inspiration />
+        <BeutifyYourSpace />
+        <HowItWorks />
+        {/* <CircularBadge number={2} /> */}
       </div>
     </Fragment>
   );

@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <nav
-      className="fixed inset-0 w-full h-24 px-12 backdrop-blur-3xl  text-amber-500 shadow-md z-10 header-bg"
+      className="fixed inset-0 w-full h-24 px-12 backdrop-blur-3xl  text-amber-500 shadow-md z-50 header-bg"
       // style={{ backgroundImage: "url(/img/bgb.PNG)" }}
     >
       <div className="flex justify-between  ">
@@ -30,10 +30,8 @@ function Header() {
                 <div>
                   <input
                     type="text"
-                    className={` pl-8 pr-4 py-3   ${
-                      openSearch && "w-[450px]"
-                    } bg-gray-50 text-amber-500  rounded-l-full focus:outline-none transition ease-in-out duration-700 font-semibold capitalize`}
-                    placeholder="Enter name of T-shirt"
+                    className={` search search-field-animation`}
+                    placeholder="T-shirt name"
                     id="search"
                   />
                 </div>
@@ -57,9 +55,7 @@ function Header() {
                 </div>
               </li>
             </ClickAwayListener>
-            {openSearch ? (
-              <span></span>
-            ) : (
+            {openSearch ? null : (
               <li onClick={toggleSearchField}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +76,7 @@ function Header() {
               <>
                 <li>
                   <a href="/">
-                    <button className="login-signup-btn">logout</button>
+                    <button className="login-signup-btn">Account</button>
                   </a>
                 </li>
                 <li className={`relative cursor-pointer`}>

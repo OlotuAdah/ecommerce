@@ -1,5 +1,8 @@
 import React from "react";
 import ImageHelper from "./helper/ImageHelper";
+import OverlayCartBtn from "./helper/OverlayCartBtn";
+import { getRandomArbitrary } from "./helper/coreAPICall";
+import { formatCurrency } from "./helper/currencyFormatter";
 
 function Card(props) {
   const defaultProduct = {
@@ -21,7 +24,9 @@ function Card(props) {
           width="w-full"
           height="h-full"
           roundedValue="rounded-t-lg"
-        />
+        >
+          <OverlayCartBtn />
+        </ImageHelper>
       </div>
       {/* <!-- card content--> */}
       <div className="px-6 mt-2 pb-1 relative">
@@ -43,7 +48,7 @@ function Card(props) {
           </span>
         </div>
         {/* T-shirt name */}
-        <p className="text-lg font-bold font-comf text-gray-600">
+        <p className="text-lg font-semibold font-comf text-gray-600">
           {product.name}
         </p>
         {/* T-shirt description */}
@@ -57,22 +62,20 @@ function Card(props) {
               Price
             </span>
             <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-amber-700 rounded-full">
-              ${product.price}
+              {formatCurrency(product.price)}
             </span>
             {/* <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-amber-700 rounded-full">
               gym
             </span> */}
           </div>
-          {/* <!-- 2: Cart Buttons -->  */}
+          {/* <!-- 2: Discouted price  and % discount-->  */}
           <div className={`align-middle space-x-1`}>
-            <button className="small-btn-cart">
-              <span className="">add </span>
-              <span className=" material-icons cart-icon ">shopping_cart</span>
-            </button>
-            <button className="small-btn-cart">
-              <span className="material-icons cart-icon">remove</span>
-              <span className=" material-icons cart-icon ">shopping_cart</span>
-            </button>
+            <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 line-through text-gray-500 rounded-full">
+              ${Math.floor(getRandomArbitrary(58, 100))}
+            </span>
+            <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-red-500 rounded-full">
+              -{Math.floor(getRandomArbitrary(28, 40))}%
+            </span>
           </div>
         </div>
         {/* Trending T-shirts: Should only become visible if rate is >=4 and reviews is >=20 */}

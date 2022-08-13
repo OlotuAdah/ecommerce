@@ -19,6 +19,6 @@ const setSomeMissingKeys = (object) => {
   });
 };
 
-function getRandomArbitrary(min, max) {
+export function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }

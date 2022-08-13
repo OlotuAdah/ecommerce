@@ -13,7 +13,7 @@ const ImageHelper = ({
 
   return (
     <div
-      className={`${width} ${height} relative ${roundedValue} ${shadowValue}`}
+      className={`${width} ${height} relative ${roundedValue} ${shadowValue} `}
     >
       <img
         src={imageUrl}

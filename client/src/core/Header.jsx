@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import ClickAwayListener from "react-click-away-listener";
+import CirleTRbadge from "./helper/CirleTRbadge";
 
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
   const toggleSearchField = () => setOpenSearch(!openSearch);
+  const [login, setLogin] = useState(true); //for testing
 
   return (
-    <nav className="sticky inset-0 w-full h-24 px-12 backdrop-blur-md shadow-amber-100 text-amber-500 mb-[500px] shadow-md z-50 ">
+    <nav
+      className="fixed inset-0 w-full h-24 px-12 backdrop-blur-3xl  text-amber-500 shadow-md z-10 header-bg"
+      // style={{ backgroundImage: "url(/img/bgb.PNG)" }}
+    >
       <div className="flex justify-between  ">
         <div className="flex items-center h-24 align-middle text-3xl gap-2 ">
           Mega T-shirts
@@ -15,7 +20,7 @@ function Header() {
           </span>
         </div>
         <div>
-          <ul className="flex gap-4 items-center align-middle  h-24">
+          <ul className="flex gap-4 items-center align-middle  h-24 relative">
             <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
               <li
                 className={`flex shadow-md shadow-amber-200 rounded-full ${
@@ -70,16 +75,28 @@ function Header() {
                 </svg>
               </li>
             )}
-            <li>
-              <a href="/">
-                <button className="login-signup-btn">login</button>
-              </a>
-            </li>
-            <li>
-              <a href="/">
-                <button className="login-signup-btn">logout</button>
-              </a>
-            </li>
+
+            {login ? (
+              <>
+                <li>
+                  <a href="/">
+                    <button className="login-signup-btn">logout</button>
+                  </a>
+                </li>
+                <li className={`relative cursor-pointer`}>
+                  <span className="material-icons text-amber-400 text-4xl ">
+                    shopping_cart
+                  </span>
+                  <CirleTRbadge text="1" />
+                </li>
+              </>
+            ) : (
+              <li>
+                <a href="/">
+                  <button className="login-signup-btn">login</button>
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>

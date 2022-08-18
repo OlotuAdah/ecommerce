@@ -11,10 +11,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: action.payload,
-      };
+      }; // A new object has to be return for react re-render to occur!
 
     default:
-      return state;
+      return state; //object is the same, hence, no re-render.
   }
 };
 

@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import ClickAwayListener from "react-click-away-listener";
 import CirleTRbadge from "./helper/CirleTRbadge";
 
+////////////////////////Redux//////////////////
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { setCurrentUser } from "../redux/user/userActions";
+
+//////////////////////////////////////////
+
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
   const toggleSearchField = () => setOpenSearch(!openSearch);
   const [login, setLogin] = useState(true); //for testing
+
+  const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+  console.log(user);
 
   return (
     <nav
@@ -76,7 +86,12 @@ function Header() {
               <>
                 <li>
                   <a href="/">
-                    <button className="login-signup-btn">Account</button>
+                    <button
+                      className="login-signup-btn"
+                      onClick={() => dispatch(setCurrentUser("Olotu"))}
+                    >
+                      Account
+                    </button>
                   </a>
                 </li>
                 <li className={`relative cursor-pointer`}>

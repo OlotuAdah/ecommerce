@@ -10,7 +10,10 @@ import ProductsHeader from "./helper/ProductsHeader";
 import Inspiration from "./Inspiration";
 import BeutifyYourSpace from "./BeutifyYourSpace";
 import HowItWorks from "./HowItWorks";
-import CircularBadge from "./helper/CircularBadge";
+// import CircularBadge from "./helper/CircularBadge";
+
+//for testing
+// const isAuthenticated = true;
 
 function Home() {
   const [products, setProducts] = useState([]);

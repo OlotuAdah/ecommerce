@@ -1,13 +1,15 @@
 // A reducer is just a function which gets two args:
 // currState (or initSate) and an action
 
+import { SET_CURRENT_USER } from "./userConstants.js";
+
 const INITIAL_STATE = {
   currentUser: null,
 };
 const userReducer = (state = INITIAL_STATE, action) => {
   // if this reducer is ever called without a state arg, use the INITIAL_STATE
   switch (action.type) {
-    case "SET_CURRENT_USER":
+    case SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,

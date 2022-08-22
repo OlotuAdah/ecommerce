@@ -11,11 +11,12 @@
 import { legacy_createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 
 import rootReducer from "./rootReducer";
-const middlewares = [logger];
+const middlewares = [logger, thunk];
 
 const persistConfig = {
   key: "root",

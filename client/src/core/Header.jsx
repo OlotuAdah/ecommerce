@@ -5,17 +5,20 @@ import CirleTRbadge from "./helper/CirleTRbadge";
 ////////////////////////Redux//////////////////
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import { setCurrentUser } from "../redux/user/userActions";
+import Cart from "./Cart";
 
 //////////////////////////////////////////
 
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
-  const toggleSearchField = () => setOpenSearch(!openSearch);
+  const [openCart, setOpenCart] = useState(false);
   const [login, setLogin] = useState(true); //for testing
-
+  // //
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
-  console.log(user);
+  ///
+  const toggleSearchField = () => setOpenSearch(!openSearch);
+  const toggleCart = () => setOpenCart(!openCart);
 
   return (
     <nav
@@ -88,17 +91,19 @@ function Header() {
                   <a href="/">
                     <button
                       className="login-signup-btn"
-                      onClick={() => dispatch(setCurrentUser("Olotu"))}
+                      onClick={() => dispatch(setCurrentUser("Adah"))}
                     >
                       Account
                     </button>
                   </a>
                 </li>
                 <li className={`relative cursor-pointer`}>
-                  <span className="material-icons text-amber-400 text-4xl ">
-                    shopping_cart
-                  </span>
-                  <CirleTRbadge text="1" />
+                  <button onClick={toggleCart}>
+                    <span className="material-icons text-amber-400 text-4xl ">
+                      shopping_cart
+                    </span>
+                    <CirleTRbadge />
+                  </button>
                 </li>
               </>
             ) : (
@@ -111,6 +116,9 @@ function Header() {
           </ul>
         </div>
       </div>
+      <ClickAwayListener onClickAway={() => setOpenCart(false)}>
+        <div className={`relative`}>{openCart ? <Cart /> : null}</div>
+      </ClickAwayListener>
     </nav>
   );
 }

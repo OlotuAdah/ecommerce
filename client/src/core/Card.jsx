@@ -6,6 +6,7 @@ import { formatCurrency } from "./helper/currencyFormatter";
 
 function Card(props) {
   const defaultProduct = {
+    id: 0,
     name: "T-shirt Name",
     price: 5,
     desc: "Short description of the T-shirt",
@@ -16,7 +17,7 @@ function Card(props) {
   const product = props.product ? props.product : defaultProduct;
 
   return (
-    <div className="product-card">
+    <div className="product-card ">
       {/* <!-- card image --> */}
       <div className="h-[320px]">
         <ImageHelper
@@ -25,14 +26,14 @@ function Card(props) {
           height="h-full"
           roundedValue="rounded-t-lg"
         >
-          <OverlayCartBtn />
+          <OverlayCartBtn product={product} />
         </ImageHelper>
       </div>
       {/* <!-- card content--> */}
-      <div className="px-6 mt-2 pb-1 relative">
+      <div className="px-6 mt-2 pb-1 relative cursor-pointer">
         {/* Rating */}
         <div className="flex text-sm">
-          {[...Array(Math.floor(product.rate))].map((item, i) => (
+          {[...Array(product.rate)].map((_, i) => (
             <span className="material-icons text-amber-400" key={i.toString()}>
               grade
             </span>
@@ -53,7 +54,12 @@ function Card(props) {
         </p>
         {/* T-shirt description */}
 
-        <p className="text-xs text-gray-600">{product.description}</p>
+        <p className="text-xs text-gray-600 py-3">
+          {product.description}{" "}
+          {/* <span className={`bg-gray-100 text-gray-400 py-1 px-2 rounded-full`}>
+            ..more
+          </span> */}
+        </p>
         <div className={`flex justify-between`}>
           {/* Contains Tags and Cart action buttons */}
           {/* <!-- 1: Tags --> */}
@@ -71,7 +77,7 @@ function Card(props) {
           {/* <!-- 2: Discouted price  and % discount-->  */}
           <div className={`align-middle space-x-1`}>
             <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 line-through text-gray-500 rounded-full">
-              ${Math.floor(getRandomArbitrary(58, 100))}
+              ${formatCurrency(Math.floor(getRandomArbitrary(58, 100)))}
             </span>
             <span className="text-xs px-2 py-0.5 bg bg-amber-100 border border-amber-200 text-red-500 rounded-full">
               -{Math.floor(getRandomArbitrary(28, 40))}%

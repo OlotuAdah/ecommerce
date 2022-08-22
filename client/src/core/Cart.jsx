@@ -39,6 +39,7 @@ function Cart() {
                           name="qty"
                           className={`bg-white text-inherit outline-none`}
                         >
+                          {/* logic for should be replaced with product qty from backend */}
                           {[...Array(5)].map((_, i) => (
                             <option
                               value={Number(i + 1)}
@@ -56,6 +57,7 @@ function Cart() {
                             dispatch(removeItemFromCart(product.id))
                           }
                         >
+                          {/* the remove-from-cart-icon is a custom taiwind class defined in the config file */}
                           <span
                             className={`material-icons  remove-from-cart-icon`}
                           >

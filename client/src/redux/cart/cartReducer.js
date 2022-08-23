@@ -5,7 +5,6 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
     case ADD_TO_CART:
       // if product is alreay added, do nothing to state
       if (state.cartItems.includes(action.payload)) return state;
-
       return { ...state, cartItems: [...state.cartItems, action.payload] };
     case REMOVE_FROM_CART:
       return {

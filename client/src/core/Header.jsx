@@ -12,19 +12,18 @@ import Cart from "./Cart";
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+
   const [login, setLogin] = useState(true); //for testing
   // //
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   ///
   const toggleSearchField = () => setOpenSearch(!openSearch);
+
   const toggleCart = () => setOpenCart(!openCart);
 
   return (
-    <nav
-      className="fixed inset-0 w-full h-24 px-12 backdrop-blur-3xl  text-amber-500 shadow-md z-50 header-bg"
-      // style={{ backgroundImage: "url(/img/bgb.PNG)" }}
-    >
+    <nav className="fixed inset-0 w-full h-24 px-12 backdrop-blur-3xl  text-amber-500 shadow-md z-50 header-bg">
       <div className="flex justify-between  ">
         <div className="flex items-center h-24 align-middle text-3xl gap-2 ">
           Mega T-shirts
@@ -117,7 +116,9 @@ function Header() {
         </div>
       </div>
       <ClickAwayListener onClickAway={() => setOpenCart(false)}>
-        <div className={`relative`}>{openCart ? <Cart /> : null}</div>
+        <div className={`relative`}>
+          {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
+        </div>
       </ClickAwayListener>
     </nav>
   );

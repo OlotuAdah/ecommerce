@@ -81,9 +81,12 @@ code {
     @apply pl-8 pr-4 py-3  bg-gray-50 text-amber-500  rounded-l-full focus:outline-none font-semibold capitalize;
   }
   .cart-component {
-    @apply bg-white rounded-lg text-amber-600 transition-all duration-700 shadow-md shadow-amber-500;
+    @apply bg-black/60 rounded-lg text-amber-600 transition-all duration-700 shadow-md shadow-amber-500;
   }
   .remove-from-cart-icon {
     @apply text-red-600 rounded-full hover:transition-all duration-700 hover:shadow-md hover:shadow-red-700;
+  }
+  .qty-select {
+    @apply bg-transparent border-none outline-none text-amber-600 text-sm rounded-lg block  px-2.5 transition-all duration-1000;
   }
 }

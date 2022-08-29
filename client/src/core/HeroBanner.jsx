@@ -1,7 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import ArrowDown from "../animated/ArrowDown";
+import Login from "./Login";
+import Signup from "./Signup";
 
 function HeroBanner() {
+  const loginMenOpen = useSelector((state) => state.authMenu.loginMenuOpen);
+  const signupMenuOpen = useSelector((state) => state.authMenu.signupMenuOpen);
   return (
     <div className={`relative h-screen w-full shadow-sm shadow-amber-500`}>
       <img
@@ -10,7 +15,11 @@ function HeroBanner() {
         className={`w-full h-full object-cover`}
       />
       {/* <!-- dark overlay on the featured image --> */}
-      <div className={`absolute inset-0 bg-black/70`}></div>
+      <div
+        className={`absolute inset-0 bg-black/${
+          loginMenOpen | signupMenuOpen ? 90 : 70
+        }`}
+      ></div>
       {/* Browse our newer collections */}
       <div
         className={`absolute w-[500px] h-[300px] bottom-[100px] right-20 bg-sky-50/50 rounded-lg transition-all hover:shadow-md hover:shadow-amber-200`}
@@ -41,6 +50,8 @@ function HeroBanner() {
           <ArrowDown />
         </div>
       </div>
+      {loginMenOpen && <Login open={loginMenOpen} />}
+      {signupMenuOpen && <Signup open={signupMenuOpen} />}
     </div>
   );
 }

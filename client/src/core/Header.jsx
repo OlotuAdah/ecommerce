@@ -4,7 +4,8 @@ import CirleTRbadge from "./helper/CirleTRbadge";
 
 ////////////////////////Redux//////////////////
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { setCurrentUser } from "../redux/user/userActions";
+import { oponAuthMenu, setCurrentUser } from "../redux/user/userActions";
+import { OPEN_LOGIN_MENU, OPEN_SIGNUP_MENU } from "../redux/user/userConstants";
 import Cart from "./Cart";
 
 //////////////////////////////////////////
@@ -12,10 +13,13 @@ import Cart from "./Cart";
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  const [openAccount, setopenAccount] = useState(false);
+  const toggleOpenAccount = () => setopenAccount((prev) => !prev);
 
   const [login, setLogin] = useState(true); //for testing
   // //
   const user = useSelector((state) => state.user.currentUser);
+  const loginMenuopen = useSelector((state) => state.authMenu.loginMenuopen);
   const dispatch = useDispatch();
   ///
   const toggleSearchField = () => setOpenSearch(!openSearch);
@@ -27,7 +31,7 @@ function Header() {
       <div className="flex justify-between  ">
         <div className="flex items-center h-24 align-middle text-3xl gap-2 ">
           Mega T-shirts
-          <span className="material-icons text-amber-400 align-bottom">
+          <span className="material-icons text-amber-500 align-bottom">
             star
           </span>
         </div>
@@ -86,19 +90,39 @@ function Header() {
 
             {login ? (
               <>
-                <li>
-                  <a href="/">
-                    <button
-                      className="login-signup-btn"
-                      onClick={() => dispatch(setCurrentUser("Adah"))}
+                <li className={`relative`}>
+                  {openAccount && (
+                    <ClickAwayListener
+                      onClickAway={() => setopenAccount(false)}
                     >
-                      Account
-                    </button>
-                  </a>
+                      <div className={`auth-bnts-container`}>
+                        <button
+                          className={`auth-btn`}
+                          onClick={() => dispatch({ type: OPEN_LOGIN_MENU })}
+                        >
+                          Login
+                        </button>
+                        <button
+                          className="auth-btn px-2"
+                          onClick={() => dispatch({ type: OPEN_SIGNUP_MENU })}
+                        >
+                          signup
+                        </button>
+                      </div>
+                    </ClickAwayListener>
+                  )}
+                  <button
+                    className={`px-3 mx-2 rounded-lg `}
+                    onClick={toggleOpenAccount}
+                  >
+                    <span className="material-icons text-[40px] text-amber-600 hover:shadow-md hover:shadow-amber-100 rounded-lg">
+                      account_circle
+                    </span>
+                  </button>
                 </li>
                 <li className={`relative cursor-pointer`}>
                   <button onClick={toggleCart}>
-                    <span className="material-icons text-amber-400 text-4xl ">
+                    <span className="material-icons text-amber-500 text-4xl ">
                       shopping_cart
                     </span>
                     <CirleTRbadge />

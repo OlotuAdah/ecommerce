@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../redux/product/productActions";
 
@@ -29,7 +29,7 @@ function Home() {
     <Fragment>
       <HeroBanner />
       <WhyUs />
-      <div className={`w-9/12 px-3 py-10 mx-auto`}>
+      <div className={`w-9/12 px-3 py-10 mx-auto relative`}>
         <ProductsHeader />
         {loading ? (
           <div className={`grid grid-cols-3 gap-6 mx-auto`}>
@@ -58,6 +58,9 @@ function Home() {
         <Inspiration />
         <BeutifyYourSpace />
         <HowItWorks />
+
+        {/* <DarkOverlay width="w-full" height="h-full" /> */}
+
         {/* <CircularBadge number={2} /> */}
       </div>
     </Fragment>

@@ -89,4 +89,22 @@ code {
   .qty-select {
     @apply bg-transparent border-none outline-none text-amber-600 text-sm rounded-lg block  px-2.5 transition-all duration-1000;
   }
+
+  /* Aunthentication buttons  styles start */
+  .btn-auth-tag {
+    @apply rounded-lg hover:bg-amber-600 hover:text-gray-100 px-2 py-0.5 transition-all duration-700;
+  }
+  .account-select {
+    @apply border-none outline-none cursor-pointer space-y-2 rounded-lg drop-shadow-md bg-transparent  duration-500;
+  }
+  .account-options {
+    @apply bg-amber-600 rounded-lg text-gray-100 cursor-pointer mx-2 my-2;
+  }
+  .auth-btn {
+    @apply cursor-pointer border border-amber-500 px-3.5 rounded-lg mb-2 bg-amber-600 text-gray-300 hover:shadow-md hover:shadow-amber-100 transition-all duration-300;
+  }
+  .auth-bnts-container {
+    @apply absolute bg-black/30 w-[100px] h-[100px] -right-2 top-12 p-4 rounded-lg flex-col justify-center shadow-sm shadow-amber-200  hover:shadow-md hover:shadow-amber-200;
+  }
+  /* Aunthentication buttons  styles end */
 }

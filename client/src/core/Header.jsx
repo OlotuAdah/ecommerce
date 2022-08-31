@@ -4,7 +4,7 @@ import CirleTRbadge from "./helper/CirleTRbadge";
 
 ////////////////////////Redux//////////////////
 import { useSelector, useDispatch } from "react-redux/es/exports";
-import { oponAuthMenu, setCurrentUser } from "../redux/user/userActions";
+import { oponAuthMenu } from "../redux/user/userActions";
 import { OPEN_LOGIN_MENU, OPEN_SIGNUP_MENU } from "../redux/user/userConstants";
 import Cart from "./Cart";
 
@@ -13,12 +13,11 @@ import Cart from "./Cart";
 function Header() {
   const [openSearch, setOpenSearch] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-  const [openAccount, setopenAccount] = useState(false);
-  const toggleOpenAccount = () => setopenAccount((prev) => !prev);
+  const [openProfileMenu, setOpenProfileMenu] = useState(false);
+  const toggleOpenProfileMenu = () => setOpenProfileMenu((prev) => !prev);
 
-  const [login, setLogin] = useState(true); //for testing
   // //
-  const user = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const loginMenuopen = useSelector((state) => state.authMenu.loginMenuopen);
   const dispatch = useDispatch();
   ///
@@ -88,14 +87,14 @@ function Header() {
               </li>
             )}
 
-            {login ? (
-              <>
-                <li className={`relative`}>
-                  {openAccount && (
-                    <ClickAwayListener
-                      onClickAway={() => setopenAccount(false)}
-                    >
-                      <div className={`auth-bnts-container`}>
+            <li className={`relative`}>
+              {openProfileMenu && (
+                <ClickAwayListener
+                  onClickAway={() => setOpenProfileMenu(false)}
+                >
+                  <div className={`auth-bnts-container`}>
+                    {!currentUser ? (
+                      <>
                         <button
                           className={`auth-btn`}
                           onClick={() => dispatch({ type: OPEN_LOGIN_MENU })}
@@ -108,34 +107,38 @@ function Header() {
                         >
                           signup
                         </button>
-                      </div>
-                    </ClickAwayListener>
-                  )}
-                  <button
-                    className={`px-3 mx-2 rounded-lg `}
-                    onClick={toggleOpenAccount}
-                  >
-                    <span className="material-icons text-[40px] text-amber-600 hover:shadow-md hover:shadow-amber-100 rounded-lg">
-                      account_circle
-                    </span>
-                  </button>
-                </li>
-                <li className={`relative cursor-pointer`}>
-                  <button onClick={toggleCart}>
-                    <span className="material-icons text-amber-500 text-4xl ">
-                      shopping_cart
-                    </span>
-                    <CirleTRbadge />
-                  </button>
-                </li>
-              </>
-            ) : (
-              <li>
-                <a href="/">
-                  <button className="login-signup-btn">login</button>
-                </a>
-              </li>
-            )}
+                      </>
+                    ) : (
+                      <>
+                        <button className="auth-btn px-2">profile</button>
+                        <button
+                          className="auth-btn px-2"
+                          onClick={() => dispatch({ type: "LOGOUT" })}
+                        >
+                          logout
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </ClickAwayListener>
+              )}
+              <button
+                className={`px-3 mx-2 rounded-lg `}
+                onClick={toggleOpenProfileMenu}
+              >
+                <span className="material-icons text-[40px] text-amber-600 hover:shadow-md hover:shadow-amber-100 rounded-lg">
+                  account_circle
+                </span>
+              </button>
+            </li>
+            <li className={`relative cursor-pointer`}>
+              <button onClick={toggleCart}>
+                <span className="material-icons text-amber-500 text-4xl ">
+                  shopping_cart
+                </span>
+                <CirleTRbadge />
+              </button>
+            </li>
           </ul>
         </div>
       </div>

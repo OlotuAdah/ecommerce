@@ -9,3 +9,8 @@ export const OPEN_LOGIN_MENU = "OPEN_LOGIN_MENU";
 export const CLOSE_LOGIN_MENU = "CLOSE_LOGIN_MENU";
 export const OPEN_SIGNUP_MENU = "OPEN_SIGNUP_MENU";
 export const CLOSE_SIGNUP_MENU = "CLOSE_SIGNUP_MENU";
+
+//login
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";

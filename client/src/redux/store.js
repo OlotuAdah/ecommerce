@@ -14,9 +14,10 @@ import logger from "redux-logger";
 import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
+import { actionHookMiddleware } from "./middlewares/actionHookMiddleware";
 
 import rootReducer from "./rootReducer";
-const middlewares = [logger, thunk];
+const middlewares = [logger, actionHookMiddleware, thunk];
 
 const persistConfig = {
   key: "root",

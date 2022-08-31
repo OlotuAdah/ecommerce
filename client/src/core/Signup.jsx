@@ -62,7 +62,7 @@ function Signup({ open }) {
             <div className={`absolute top-[22px] right-4`}>
               <button
                 onClick={togglePasswordVisibility}
-                class="material-icons text-amber-600/70 text-md cursor-pointer transition-all duration-700"
+                className="material-icons text-amber-600/70 text-md cursor-pointer transition-all duration-700"
               >
                 {passVisibility ? "visibility" : "visibility_off"}
               </button>

@@ -1,12 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ArrowDown from "../animated/ArrowDown";
+import ActionNotification from "./helper/Notifications/ActionNotification";
 import Login from "./Login";
 import Signup from "./Signup";
 
 function HeroBanner() {
   const loginMenOpen = useSelector((state) => state.authMenu.loginMenuOpen);
   const signupMenuOpen = useSelector((state) => state.authMenu.signupMenuOpen);
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   return (
     <div className={`relative h-screen w-full shadow-sm shadow-amber-500`}>
       <img
@@ -16,9 +19,9 @@ function HeroBanner() {
       />
       {/* <!-- dark overlay on the featured image --> */}
       <div
-        className={`absolute inset-0 bg-black/${
-          loginMenOpen | signupMenuOpen ? 90 : 70
-        }`}
+        className={`absolute inset-0 ${
+          loginMenOpen | signupMenuOpen ? "bg-black/90" : "bg-black/70"
+        } `}
       ></div>
       {/* Browse our newer collections */}
       <div
@@ -52,6 +55,11 @@ function HeroBanner() {
       </div>
       {loginMenOpen && <Login open={loginMenOpen} />}
       {signupMenuOpen && <Signup open={signupMenuOpen} />}
+      <ActionNotification
+        actionType="success"
+        message="Login Successfull"
+        textSize="text-sm"
+      />
     </div>
   );
 }

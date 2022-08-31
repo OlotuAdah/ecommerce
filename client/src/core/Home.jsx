@@ -11,15 +11,11 @@ import Inspiration from "./Inspiration";
 import BeutifyYourSpace from "./BeutifyYourSpace";
 import HowItWorks from "./HowItWorks";
 import LoadingProduct from "./helper/LoadingProduct";
-// import CircularBadge from "./helper/CircularBadge";
 
 function Home() {
-  // const [error, setError] = useState(false);
-
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList; //destructure these three values
-  // console.log(loading, error);
 
   useEffect(() => {
     dispatch(listProducts());
@@ -58,10 +54,6 @@ function Home() {
         <Inspiration />
         <BeutifyYourSpace />
         <HowItWorks />
-
-        {/* <DarkOverlay width="w-full" height="h-full" /> */}
-
-        {/* <CircularBadge number={2} /> */}
       </div>
     </Fragment>
   );

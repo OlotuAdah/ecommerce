@@ -1,20 +1,29 @@
 // A reducer is just a function which gets two args:
 // currState (or initSate) and an action
 
-import { SET_CURRENT_USER } from "./userConstants.js";
+import { LOGIN_FAILED, LOGIN_REQUEST, LOGIN_SUCCESS } from "./userConstants.js";
 
 const INITIAL_STATE = {
+  loading: false,
+  error: null,
   currentUser: null,
 };
 const userReducer = (state = INITIAL_STATE, action) => {
   // if this reducer is ever called without a state arg, use the INITIAL_STATE
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case LOGIN_REQUEST:
+      return { ...state, loading: true, error: false };
+
+    case LOGIN_SUCCESS:
       return {
         ...state,
+        error: false,
+        loading: false,
         currentUser: action.payload,
-      }; // A new object has to be return for react re-render to occur!
+      };
 
+    case LOGIN_FAILED:
+      return { ...state, loading: false, error: action.payload };
     default:
       return state; //object is the same, hence, no re-render.
   }
